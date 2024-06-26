@@ -12,7 +12,7 @@ const Header = () => {
       </div>
       <form className=" flex items-center border  rounded ">
         <input
-          className="bg-transparent py-2 px-5 md:px-5 outline-none"
+          className="bg-transparent py-1 px-1 md:px-5 outline-none"
           type="text"
           placeholder="Ülke ismine göre ara"
         />
