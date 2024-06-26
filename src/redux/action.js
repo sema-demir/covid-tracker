@@ -22,7 +22,7 @@ export const getData = createAsyncThunk("countryData", async (isoCode) => {
 
   //payloadı return edecegiz
   return {
-    covidData: responses[0].data.data[0],
-    countryData: responses[1].data[0],
+    covid: responses[0].data.data[0],
+    country: responses[1].data[0],
   };
 });
