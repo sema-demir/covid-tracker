@@ -18,7 +18,11 @@ export const getData = createAsyncThunk("countryData", async (isoCode) => {
 
   //Her iki Api istegiini senkron bir paralel şeklinde gönder
   const responses = await Promise.all([req1, req2]);
-  console.log(responses);
+  //covid bilgilerindeki region nesnesini covid nesnesi içerine dagıt
+  const covid = {
+    ...responses[0].data.data[0],
+    ...responses[0].data.data[0].region,
+  };
 
   //payloadı return edecegiz
   return {

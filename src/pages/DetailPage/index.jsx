@@ -34,7 +34,8 @@ const DetailPage = () => {
             {isLoading ? (
               <div></div>
             ) : (
-              !error && (
+              !error &&
+              data && (
                 <>
                   <img
                     className="w-12 h-12 rounded-md"
@@ -49,7 +50,6 @@ const DetailPage = () => {
           </div>
         </div>
         {/* Detaylar */}
-        <InfoCard />
       </div>
     </div>
   );
