@@ -4,6 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { getData } from "../../redux/action";
 import { IoIosArrowBack } from "react-icons/io";
 import InfoCard from "../../components/InfoCard.jsx";
+import Loader from "../../components/Loader/index.jsx";
+import ErrorDisplay from "../../components/ErrorDisplay/index.jsx";
+import HeaderLoader from "../../components/Loader/HeaderLoader.jsx";
 const DetailPage = () => {
   const { data, error, isLoading } = useSelector((store) => store);
   //ülkeyi parametre olarak gönderdik
@@ -13,14 +16,24 @@ const DetailPage = () => {
   //dispatch kurulumu
   const dispatch = useDispatch();
 
+  //verileri alacak fonksiyon
+  const fetchData = () => {
+    dispatch(getData(country));
+  };
+
   //asenkron thunk aksiyonunu dispatch edip country parametresi ile  tetkliyoruz
   useEffect(() => {
-    dispatch(getData(country));
+    fetchData();
   }, []);
+  //covid bilgilerini diziye cevir
+  //nesneyi diziye cevirmek istersek Object.entries metodunu kullanıyoruz
+
+  const covidData = Object.entries(data?.covid || {});
+  console.log(covidData);
 
   return (
-    <div className="h-[calc(100vh-75px)] bg-zinc-800 text-white p-6 grid place-items-center ">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl">
+    <div className="min-h-[calc(100vh-75px)] bg-zinc-800 text-white p-6 grid place-items-center ">
+      <div className="bg-white min-h-[80vh] rounded-lg shadow-lg p-8 max-w-3xl">
         {/* Üst içerik */}
         <div className="flex gap-5 justify-between items-center mb-6">
           <Link
@@ -28,11 +41,11 @@ const DetailPage = () => {
             to={"/"}
           >
             <IoIosArrowBack />
-            Back
+            Geri
           </Link>
           <div className="flex items-center space-x-2">
             {isLoading ? (
-              <div></div>
+              <HeaderLoader />
             ) : (
               !error &&
               data && (
@@ -49,7 +62,16 @@ const DetailPage = () => {
             )}
           </div>
         </div>
-        {/* Detaylar */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {/* Detaylar */}
+          {isLoading ? (
+            <Loader />
+          ) : error ? (
+            <ErrorDisplay message={error} retry={fetchData} />
+          ) : (
+            covidData.map((item, key) => <InfoCard key={key} item={item} />)
+          )}
+        </div>
       </div>
     </div>
   );

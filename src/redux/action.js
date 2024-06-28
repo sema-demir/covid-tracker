@@ -24,9 +24,15 @@ export const getData = createAsyncThunk("countryData", async (isoCode) => {
     ...responses[0].data.data[0].region,
   };
 
+  //gereksiz değerleri kaldır
+  delete covid.region;
+  delete covid.cities;
+
+  console.log(covid);
+
   //payloadı return edecegiz
   return {
-    covid: responses[0].data.data[0],
+    covid,
     country: responses[1].data[0],
   };
 });

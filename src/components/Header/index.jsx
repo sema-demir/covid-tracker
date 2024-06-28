@@ -7,7 +7,7 @@ const Header = () => {
       <div className="flex items-center gap-2">
         <FaVirusCovid className="text-green-500 text-xl" />
         <h1 className="font-mono whitespace-nowrap font-semibold text-lg md:text-2xl">
-          Covid Tracker
+          Covid Takip
         </h1>
       </div>
       <form className=" flex items-center border  rounded ">
