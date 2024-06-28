@@ -29,7 +29,7 @@ const DetailPage = () => {
   //nesneyi diziye cevirmek istersek Object.entries metodunu kullanıyoruz
 
   const covidData = Object.entries(data?.covid || {});
-  console.log(covidData);
+  //console.log(covidData);
 
   return (
     <div className="min-h-[calc(100vh-75px)] bg-zinc-800 text-white p-6 grid place-items-center ">

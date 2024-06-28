@@ -1,9 +1,8 @@
 //API lardan bayrak ve ülke covid verisini alacak ve slice 'a aktaracak asenkron thunk aksiyonu yazalım
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { headers } from "../constants";
-
+import axios from "axios";
 export const getData = createAsyncThunk("countryData", async (isoCode) => {
   const params = { iso: isoCode };
 

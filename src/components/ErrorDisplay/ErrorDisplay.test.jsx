@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import ErrorDisplay from ".";
 import userEvent from "@testing-library/user-event";
 
-//!!Bir bilşenele alakalı 2 tane testimiz var describe yardımıyla bu testleri açıklayabiliyoruz gruplandırmak için
+//!!Bir bilşenle alakalı 2 tane testimiz var describe yardımıyla bu testleri açıklayabiliyoruz gruplandırmak için
 
 describe("error display bileşenine ait testler ", () => {
   test("Doğru mesajı gösterir", () => {
