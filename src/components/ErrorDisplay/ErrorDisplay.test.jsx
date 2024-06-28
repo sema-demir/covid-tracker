@@ -2,30 +2,34 @@ import { render, screen } from "@testing-library/react";
 import ErrorDisplay from ".";
 import userEvent from "@testing-library/user-event";
 
-test("Doğru mesajı gösterir", () => {
-  const errorMessage = "404 Content was not found";
-  render(<ErrorDisplay message={errorMessage} retry={() => {}} />);
+//!!Bir bilşenele alakalı 2 tane testimiz var describe yardımıyla bu testleri açıklayabiliyoruz gruplandırmak için
 
-  // Doğru hata mesajına sahip yazı var mı?
-  //!!eleman varsa alır yoksa hata verir getBytext screen ile testi gecti
-  screen.getByText(errorMessage);
-});
-test("Tekrar dene butonuna tıklanınca fonksiyon çalışır", async () => {
-  // userı kur
-  const user = userEvent.setup();
+describe("error display bileşenine ait testler ", () => {
+  test("Doğru mesajı gösterir", () => {
+    const errorMessage = "404 Content was not found";
+    render(<ErrorDisplay message={errorMessage} retry={() => {}} />);
 
-  // bir test / mock  fonksiyonu oluştur
-  const retryMock = jest.fn();
+    // Doğru hata mesajına sahip yazı var mı?
+    //!!eleman varsa alır yoksa hata verir getBytext screen ile testi gecti
+    screen.getByText(errorMessage);
+  });
+  test("Tekrar dene butonuna tıklanınca fonksiyon çalışır", async () => {
+    // User ı kur
+    const user = userEvent.setup();
 
-  // bileşeni renderla
-  render(<ErrorDisplay message={"xx"} retry={retryMock} />);
+    //Burada  test  mock  fonksiyonu oluştur
+    const retryMock = jest.fn();
 
-  // butonu çağır
-  const button = screen.getByRole("button");
+    // Bileşeni renderla
+    render(<ErrorDisplay message={"xx"} retry={retryMock} />);
 
-  // butona tıkla
-  await user.click(button);
+    // Butonu çağır
+    const button = screen.getByRole("button");
 
-  // fonksiyon çağrıldımı kontrol et
-  expect(retryMock).toHaveBeenCalled();
+    // Butona tıkla
+    await user.click(button);
+
+    // Fonksiyon çağrıldımı kontrol et
+    expect(retryMock).toHaveBeenCalled();
+  });
 });
