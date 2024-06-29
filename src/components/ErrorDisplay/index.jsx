@@ -2,7 +2,7 @@ import { IoWarningSharp } from "react-icons/io5";
 
 const ErrorDisplay = ({ message, retry }) => {
   return (
-    <>
+    <div className="col-span-3 flex flex-col">
       <div className="bg-red-500 rounded-md p-5 flex items-center gap-4">
         <IoWarningSharp className="text-4xl" />
         <div>
@@ -16,7 +16,7 @@ const ErrorDisplay = ({ message, retry }) => {
       >
         Tekrar Dene
       </button>
-    </>
+    </div>
   );
 };
 

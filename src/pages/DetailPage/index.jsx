@@ -8,7 +8,9 @@ import Loader from "../../components/Loader/index.jsx";
 import ErrorDisplay from "../../components/ErrorDisplay/index.jsx";
 import HeaderLoader from "../../components/Loader/HeaderLoader.jsx";
 const DetailPage = () => {
+  //store a abone ol
   const { data, error, isLoading } = useSelector((store) => store);
+
   //ülkeyi parametre olarak gönderdik
   const { country } = useParams();
   //console.log(param);
@@ -29,8 +31,7 @@ const DetailPage = () => {
   //nesneyi diziye cevirmek istersek Object.entries metodunu kullanıyoruz
 
   const covidData = Object.entries(data?.covid || {});
-  //console.log(covidData);
-
+  //console.log(store);
   return (
     <div className="min-h-[calc(100vh-75px)] bg-zinc-800 text-white p-6 grid place-items-center ">
       <div className="bg-white min-h-[80vh] rounded-lg shadow-lg p-8 max-w-3xl">
@@ -51,10 +52,13 @@ const DetailPage = () => {
               data && (
                 <>
                   <img
-                    className="w-12 h-12 rounded-md"
+                    className="w-24 h-12 rounded-md"
                     src={data.country.flags.svg}
                   />
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1
+                    data-testid="title"
+                    className="text-3xl font-bold text-gray-900"
+                  >
                     {data.country.name.common}
                   </h1>
                 </>
