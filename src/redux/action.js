@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { headers } from "../constants";
 import axios from "axios";
 export const getData = createAsyncThunk("countryData", async (isoCode) => {
-  const params = { iso: isoCode };
+  const params = { q: isoCode };
 
   //API den covid  bilgilerini al
   const req1 = axios.get(

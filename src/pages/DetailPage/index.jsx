@@ -26,7 +26,7 @@ const DetailPage = () => {
   //asenkron thunk aksiyonunu dispatch edip country parametresi ile  tetkliyoruz
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [country]);
   //covid bilgilerini diziye cevir
   //nesneyi diziye cevirmek istersek Object.entries metodunu kullanıyoruz
 
